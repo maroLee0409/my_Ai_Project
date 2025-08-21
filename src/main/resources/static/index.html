@@ -4,27 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StockAI - 주식 분석 시스템</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tailwind.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- 네비게이션 -->
-    <nav class="bg-blue-600 text-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <h1 class="text-xl font-bold">📈 StockAI</h1>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">대시보드</a>
-                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">주식 분석</a>
-                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">포트폴리오</a>
-                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">AI 예측</a>
-                    <button class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-md">로그인</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div data-include="components/navigation.html"></div>
+
+    <!-- Toast 메시지 컨테이너 -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 space-y-2"></div>
 
     <!-- 메인 컨텐츠 -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -125,12 +113,7 @@
     </main>
 
     <!-- 푸터 -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2024 StockAI. 모든 권리 보유.</p>
-            <p class="text-gray-400 text-sm mt-2">투자 결정은 본인의 책임입니다. 투자 전 충분한 검토를 하시기 바랍니다.</p>
-        </div>
-    </footer>
+    <div data-include="components/footer.html"></div>
 
     <script>
         // 샘플 차트 생성
@@ -164,5 +147,8 @@
             }
         });
     </script>
+    
+    <!-- Include JavaScript -->
+    <script src="js/include.js"></script>
 </body>
 </html>

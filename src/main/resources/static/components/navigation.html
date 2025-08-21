@@ -1,0 +1,30 @@
+<!-- 네비게이션 -->
+<nav class="bg-blue-600 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <h1 class="text-xl font-bold">📈 StockAI</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">대시보드</a>
+                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">주식 분석</a>
+                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">포트폴리오</a>
+                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">AI 예측</a>
+                
+                <!-- 로그인 전 상태 -->
+                <div id="loginSection" class="flex items-center space-x-4">
+                    <button id="loginBtn" class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-md">로그인</button>
+                </div>
+                
+                <!-- 로그인 후 상태 -->
+                <div id="userSection" class="hidden flex items-center space-x-4">
+                    <span class="text-blue-100">안녕하세요, <span id="username">사용자님</span>!</span>
+                    <button id="settingsBtn" class="hover:text-blue-200 p-2 rounded-md" title="설정">
+                        ⚙️
+                    </button>
+                    <button id="logoutBtn" class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-md">로그아웃</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
