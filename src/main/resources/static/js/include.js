@@ -55,9 +55,54 @@ function initializeNavigation() {
         showToast('로그아웃되었습니다.', 'info');
     });
 
-    // 설정 버튼 클릭
-    settingsBtn.addEventListener('click', function() {
-        showToast('설정 페이지로 이동합니다!', 'info');
+    // 설정 드롭다운 관련 요소들
+    const settingsDropdown = document.getElementById('settingsDropdown');
+    const profileEditBtn = document.getElementById('profileEditBtn');
+    const settingsMenuBtn = document.getElementById('settingsMenuBtn');
+
+    // 설정 버튼 클릭 - 드롭다운 토글
+    settingsBtn.addEventListener('click', function(e) {
+        e.stopPropagation(); // 이벤트 버블링 방지
+        toggleSettingsDropdown();
+    });
+
+    // 드롭다운 토글 함수
+    function toggleSettingsDropdown() {
+        if (settingsDropdown) {
+            settingsDropdown.classList.toggle('hidden');
+        }
+    }
+
+    // 회원정보 수정 버튼 클릭
+    if (profileEditBtn) {
+        profileEditBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideSettingsDropdown();
+            showToast('회원정보 수정 페이지로 이동합니다!', 'info');
+        });
+    }
+
+    // 설정하기 버튼 클릭
+    if (settingsMenuBtn) {
+        settingsMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideSettingsDropdown();
+            showToast('설정 페이지로 이동합니다!', 'info');
+        });
+    }
+
+    // 드롭다운 숨기기 함수
+    function hideSettingsDropdown() {
+        if (settingsDropdown) {
+            settingsDropdown.classList.add('hidden');
+        }
+    }
+
+    // 문서 클릭 시 드롭다운 닫기
+    document.addEventListener('click', function(e) {
+        if (settingsDropdown && !settingsDropdown.contains(e.target) && !settingsBtn.contains(e.target)) {
+            hideSettingsDropdown();
+        }
     });
 
     // UI 업데이트 함수

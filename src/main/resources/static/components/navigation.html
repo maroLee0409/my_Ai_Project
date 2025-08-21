@@ -19,9 +19,19 @@
                 <!-- 로그인 후 상태 -->
                 <div id="userSection" class="hidden flex items-center space-x-4">
                     <span class="text-blue-100">안녕하세요, <span id="username">사용자님</span>!</span>
-                    <button id="settingsBtn" class="hover:text-blue-200 p-2 rounded-md" title="설정">
-                        ⚙️
-                    </button>
+                    
+                    <!-- 설정 드롭다운 -->
+                    <div class="relative">
+                        <button id="settingsBtn" class="hover:text-blue-200 p-2 rounded-md" title="설정">
+                            ⚙️
+                        </button>
+                        <!-- 드롭다운 메뉴 -->
+                        <div id="settingsDropdown" class="absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
+                            <a href="#" id="profileEditBtn" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">회원정보 수정</a>
+                            <a href="#" id="settingsMenuBtn" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">설정하기</a>
+                        </div>
+                    </div>
+                    
                     <button id="logoutBtn" class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-md">로그아웃</button>
                 </div>
             </div>

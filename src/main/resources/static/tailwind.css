@@ -49,6 +49,7 @@
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
 .mb-12 { margin-bottom: 3rem; }
+.mt-1 { margin-top: 0.25rem; }
 .mt-2 { margin-top: 0.5rem; }
 .mt-12 { margin-top: 3rem; }
 .ml-auto { margin-left: auto; }
@@ -94,6 +95,7 @@
 
 .fixed { position: fixed; }
 .top-4 { top: 1rem; }
+.top-full { top: 100%; }
 .right-4 { right: 1rem; }
 .z-50 { z-index: 50; }
 
@@ -113,6 +115,7 @@
 /* 호버 효과 */
 .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
 .hover\:bg-red-700:hover { background-color: #b91c1c; }
+.hover\:bg-gray-100:hover { background-color: #f3f4f6; }
 .hover\:bg-gray-300:hover { background-color: #d1d5db; }
 .hover\:text-blue-200:hover { color: #bfdbfe; }
 .hover\:opacity-75:hover { opacity: 0.75; }
@@ -203,6 +206,7 @@
 .w-12 { width: 3rem; }
 .w-16 { width: 4rem; }
 .w-20 { width: 5rem; }
+.w-48 { width: 12rem; }
 
 /* 색상 추가 */
 .bg-indigo-500 { background-color: #6366f1; }
@@ -229,6 +233,30 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* 링크 기본 스타일 재설정 */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+/* 네비게이션 링크 스타일 */
+nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav a:visited {
+    color: inherit;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
 button {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -242,4 +270,22 @@ input:focus {
 canvas {
     max-width: 100%;
     height: auto;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown-menu {
+    transform: translateY(-5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-item {
+    transition: background-color 0.15s ease-in-out;
 }
