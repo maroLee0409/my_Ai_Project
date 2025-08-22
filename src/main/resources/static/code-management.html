@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코드 관리 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="js/include.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav data-include="components/navigation.html"></nav>
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="flex gap-6">
+            <!-- 어드민 사이드바 네비게이션 -->
+            <div data-include="components/admin-navigation.html"></div>
+
+            <!-- 메인 컨텐츠 영역 -->
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">코드 관리</h1>
+                        <p class="text-gray-600 mt-2">시스템에서 사용하는 공통코드와 기초코드를 관리합니다.</p>
+                    </div>
+                    
+                    <div class="mb-6 flex justify-between items-center">
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="코드 또는 코드명 검색..." 
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>전체 분류</option>
+                                <option>사용자 권한</option>
+                                <option>주식 분류</option>
+                                <option>시스템 설정</option>
+                                <option>알림 타입</option>
+                                <option>상태 코드</option>
+                            </select>
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>전체 상태</option>
+                                <option>활성</option>
+                                <option>비활성</option>
+                            </select>
+                        </div>
+                        <button class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                            코드 추가
+                        </button>
+                    </div>
+
+                    <!-- 코드 통계 -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-indigo-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-indigo-700">전체 코드</h3>
+                            <p class="text-2xl font-bold text-indigo-900">342</p>
+                            <p class="text-xs text-indigo-600">등록된 코드</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-green-700">활성 코드</h3>
+                            <p class="text-2xl font-bold text-green-900">318</p>
+                            <p class="text-xs text-green-600">93.0%</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-yellow-700">코드 분류</h3>
+                            <p class="text-2xl font-bold text-yellow-900">12</p>
+                            <p class="text-xs text-yellow-600">카테고리</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-blue-700">최근 수정</h3>
+                            <p class="text-2xl font-bold text-blue-900">7</p>
+                            <p class="text-xs text-blue-600">이번 주</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 코드 목록 테이블 -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">코드</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">코드명</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">분류</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">설명</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">상태</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">등록일</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">작업</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">USER_ROLE_ADMIN</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">관리자</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">사용자 권한</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">시스템 관리자 권한</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">USER_ROLE_USER</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">일반 사용자</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">사용자 권한</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">기본 사용자 권한</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">STOCK_TYPE_KRX</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">한국거래소</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">주식 분류</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">한국 주식 시장</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">STOCK_TYPE_NYSE</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">뉴욕증권거래소</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">주식 분류</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">미국 주식 시장</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-15</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">NOTIFICATION_EMAIL</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">이메일 알림</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">알림 타입</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">이메일을 통한 알림</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-02-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">STATUS_ACTIVE</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">활성</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">상태 코드</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">활성 상태</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">LOG_LEVEL_ERROR</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">오류</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">시스템 설정</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">에러 로그 레벨</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">비활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-02-10</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 페이지네이션 -->
+                    <div class="mt-6 flex items-center justify-between">
+                        <div class="text-sm text-gray-700">
+                            총 <span class="font-medium">342</span>개 중 <span class="font-medium">1-10</span>개 표시
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">이전</button>
+                            <button class="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm">1</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">2</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">3</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">다음</button>
+                        </div>
+                    </div>
+
+                    <!-- 코드 분류별 통계 -->
+                    <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">분류별 코드 현황</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">45</div>
+                                <div class="text-sm text-gray-600">사용자 권한</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">68</div>
+                                <div class="text-sm text-gray-600">주식 분류</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-red-600">23</div>
+                                <div class="text-sm text-gray-600">시스템 설정</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-orange-600">34</div>
+                                <div class="text-sm text-gray-600">알림 타입</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">89</div>
+                                <div class="text-sm text-gray-600">상태 코드</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-gray-600">83</div>
+                                <div class="text-sm text-gray-600">기타</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer data-include="components/footer.html"></footer>
+</body>
+</html>

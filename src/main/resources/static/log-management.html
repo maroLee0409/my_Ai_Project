@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그 관리 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="js/include.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav data-include="components/navigation.html"></nav>
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="flex gap-6">
+            <!-- 어드민 사이드바 네비게이션 -->
+            <div data-include="components/admin-navigation.html"></div>
+
+            <!-- 메인 컨텐츠 영역 -->
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">로그 관리</h1>
+                        <p class="text-gray-600 mt-2">시스템 로그와 사용자 활동을 모니터링합니다.</p>
+                    </div>
+                    
+                    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                            <option>전체 로그</option>
+                            <option>시스템 로그</option>
+                            <option>사용자 활동</option>
+                            <option>에러 로그</option>
+                        </select>
+                        <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg" value="2025-08-22">
+                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            로그 내보내기
+                        </button>
+                        <button class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            실시간 새로고침
+                        </button>
+                    </div>
+                    
+                    <!-- 로그 통계 -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-blue-700">총 로그</h3>
+                            <p class="text-2xl font-bold text-blue-900">1,247</p>
+                            <p class="text-xs text-blue-600">오늘</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-green-700">정상 로그</h3>
+                            <p class="text-2xl font-bold text-green-900">1,156</p>
+                            <p class="text-xs text-green-600">92.7%</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-yellow-700">경고</h3>
+                            <p class="text-2xl font-bold text-yellow-900">67</p>
+                            <p class="text-xs text-yellow-600">5.4%</p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <h3 class="text-sm font-medium text-red-700">에러</h3>
+                            <p class="text-2xl font-bold text-red-900">24</p>
+                            <p class="text-xs text-red-600">1.9%</p>
+                        </div>
+                    </div>
+
+                    <!-- 실시간 로그 -->
+                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm max-h-96 overflow-y-auto">
+                        <div class="mb-2 text-green-300 font-bold">--- 실시간 로그 모니터링 ---</div>
+                        <div class="text-green-400">[2025-08-22 14:35:42] <span class="text-blue-400">INFO</span> - 사용자 로그인: hong@example.com (IP: 192.168.1.100)</div>
+                        <div class="text-green-400">[2025-08-22 14:34:18] <span class="text-blue-400">INFO</span> - 페이지 접근: /settings-overview.html</div>
+                        <div class="text-green-400">[2025-08-22 14:33:55] <span class="text-blue-400">INFO</span> - 데이터베이스 쿼리 실행: SELECT * FROM users</div>
+                        <div class="text-yellow-400">[2025-08-22 14:33:21] <span class="text-yellow-300">WARN</span> - 잘못된 로그인 시도: unknown@example.com (IP: 192.168.1.50)</div>
+                        <div class="text-green-400">[2025-08-22 14:32:15] <span class="text-blue-400">INFO</span> - 시스템 백업 완료: /backup/2025-08-22/</div>
+                        <div class="text-red-400">[2025-08-22 14:31:42] <span class="text-red-300">ERROR</span> - DB 연결 타임아웃: Connection timeout after 30s</div>
+                        <div class="text-green-400">[2025-08-22 14:30:33] <span class="text-blue-400">INFO</span> - 사용자 회원가입: kim@example.com</div>
+                        <div class="text-green-400">[2025-08-22 14:29:18] <span class="text-blue-400">INFO</span> - 캐시 업데이트: stock_data_cache</div>
+                        <div class="text-yellow-400">[2025-08-22 14:28:45] <span class="text-yellow-300">WARN</span> - 메모리 사용량 높음: 85% (임계값: 80%)</div>
+                        <div class="text-green-400">[2025-08-22 14:27:22] <span class="text-blue-400">INFO</span> - API 요청: /api/stocks/AAPL</div>
+                        <div class="text-green-400">[2025-08-22 14:26:15] <span class="text-blue-400">INFO</span> - 스케줄러 작업 시작: daily_report_generation</div>
+                        <div class="text-red-400">[2025-08-22 14:25:03] <span class="text-red-300">ERROR</span> - 외부 API 호출 실패: Yahoo Finance API timeout</div>
+                        <div class="text-green-400">[2025-08-22 14:24:30] <span class="text-blue-400">INFO</span> - 사용자 로그아웃: admin@example.com</div>
+                        <div class="text-green-400">[2025-08-22 14:23:55] <span class="text-blue-400">INFO</span> - 세션 정리: 만료된 세션 12개 삭제</div>
+                        <div class="text-yellow-400">[2025-08-22 14:22:18] <span class="text-yellow-300">WARN</span> - 디스크 공간 부족: 92% 사용 중</div>
+                        <div class="text-green-400">[2025-08-22 14:21:42] <span class="text-blue-400">INFO</span> - 이메일 발송 완료: weekly_report@example.com</div>
+                    </div>
+
+                    <!-- 로그 검색 -->
+                    <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">로그 검색</h3>
+                        <div class="flex gap-4 mb-4">
+                            <input type="text" placeholder="키워드 검색..." 
+                                   class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>전체 레벨</option>
+                                <option>INFO</option>
+                                <option>WARN</option>
+                                <option>ERROR</option>
+                            </select>
+                            <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                검색
+                            </button>
+                        </div>
+                        
+                        <!-- 검색 결과 -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <div class="text-sm text-gray-600 mb-2">검색 결과: 3건</div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <span class="text-red-500 mr-2">🔴</span>
+                                    <span class="text-gray-700">[14:31:42] ERROR - DB 연결 타임아웃</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-red-500 mr-2">🔴</span>
+                                    <span class="text-gray-700">[14:25:03] ERROR - 외부 API 호출 실패</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-yellow-500 mr-2">🟡</span>
+                                    <span class="text-gray-700">[14:33:21] WARN - 잘못된 로그인 시도</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer data-include="components/footer.html"></footer>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원관리 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="js/include.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav data-include="components/navigation.html"></nav>
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="flex gap-6">
+            <!-- 어드민 사이드바 네비게이션 -->
+            <div data-include="components/admin-navigation.html"></div>
+
+            <!-- 메인 컨텐츠 영역 -->
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">회원관리</h1>
+                        <p class="text-gray-600 mt-2">등록된 사용자 목록과 권한을 관리합니다.</p>
+                    </div>
+                    
+                    <!-- 검색 및 필터 영역 -->
+                    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1">
+                            <input type="text" placeholder="사용자 이름 또는 이메일 검색..." 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option>전체 권한</option>
+                            <option>관리자</option>
+                            <option>사용자</option>
+                            <option>게스트</option>
+                        </select>
+                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            사용자 추가
+                        </button>
+                    </div>
+                    
+                    <!-- 사용자 목록 테이블 -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">이름</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">이메일</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">권한</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">상태</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">가입일</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">작업</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">홍길동</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">hong@example.com</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">관리자</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-15</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">김영희</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">kim@example.com</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">사용자</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-02-10</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">박철수</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">park@example.com</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">사용자</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">대기</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-02-20</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 페이지네이션 -->
+                    <div class="mt-6 flex items-center justify-between">
+                        <div class="text-sm text-gray-700">
+                            총 <span class="font-medium">156</span>명 중 <span class="font-medium">1-10</span>명 표시
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">이전</button>
+                            <button class="px-3 py-1 bg-blue-600 text-white rounded-md text-sm">1</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">2</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">3</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-50">다음</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer data-include="components/footer.html"></footer>
+</body>
+</html>

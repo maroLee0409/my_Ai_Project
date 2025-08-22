@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 접근권한 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="js/include.js"></script>
+    <script src="js/pages-data.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav data-include="components/navigation.html"></nav>
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="flex gap-6">
+            <!-- 어드민 사이드바 네비게이션 -->
+            <div data-include="components/admin-navigation.html"></div>
+
+            <!-- 메인 컨텐츠 영역 -->
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">메뉴 접근권한</h1>
+                        <p class="text-gray-600 mt-2">사용자별로 페이지 접근 권한을 개별 설정합니다.</p>
+                    </div>
+                    
+                    <!-- 검색 및 필터 영역 -->
+                    <div class="mb-6 flex justify-between items-center">
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="사용자 검색..." 
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>전체 사용자</option>
+                                <option>관리자</option>
+                                <option>일반 사용자</option>
+                                <option>게스트</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm">
+                                모든 변경사항 저장
+                            </button>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                                권한 일괄 적용
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- 사용자 목록 (좌측) -->
+                        <div class="lg:col-span-4">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h3 class="text-lg font-semibold mb-4 text-gray-800">사용자 목록</h3>
+                                <div class="space-y-2 max-h-96 overflow-y-auto">
+                                    <div class="user-item p-3 bg-white rounded-lg border-2 border-blue-500 cursor-pointer" data-user-id="1">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-medium text-gray-900">홍길동</div>
+                                                <div class="text-sm text-gray-600">hong@example.com</div>
+                                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs mt-1 inline-block">관리자</span>
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                <div>권한: 8/10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="user-item p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 cursor-pointer" data-user-id="2">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-medium text-gray-900">김영희</div>
+                                                <div class="text-sm text-gray-600">kim@example.com</div>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mt-1 inline-block">일반 사용자</span>
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                <div>권한: 5/10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="user-item p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 cursor-pointer" data-user-id="3">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-medium text-gray-900">박철수</div>
+                                                <div class="text-sm text-gray-600">park@example.com</div>
+                                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mt-1 inline-block">분석가</span>
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                <div>권한: 6/10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="user-item p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 cursor-pointer" data-user-id="4">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-medium text-gray-900">이민수</div>
+                                                <div class="text-sm text-gray-600">lee@example.com</div>
+                                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mt-1 inline-block">일반 사용자</span>
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                <div>권한: 4/10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="user-item p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 cursor-pointer" data-user-id="5">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-medium text-gray-900">최은정</div>
+                                                <div class="text-sm text-gray-600">choi@example.com</div>
+                                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs mt-1 inline-block">게스트</span>
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                <div>권한: 2/10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="user-item p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 cursor-pointer" data-user-id="6">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-medium text-gray-900">정대한</div>
+                                                <div class="text-sm text-gray-600">jung@example.com</div>
+                                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mt-1 inline-block">분석가</span>
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                <div>권한: 7/10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 페이지별 권한 설정 (우측) -->
+                        <div class="lg:col-span-8">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">
+                                        <span id="selected-user-name">홍길동</span> 님의 페이지 접근권한
+                                    </h3>
+                                    <div class="flex gap-2">
+                                        <button class="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700">모두 허용</button>
+                                        <button class="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700">모두 거부</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3 max-h-96 overflow-y-auto" id="permissions-container">
+                                    <!-- 페이지별 권한 체크박스가 동적으로 로드됩니다 -->
+                                </div>
+
+                                <!-- 저장 버튼 -->
+                                <div class="mt-6 pt-4 border-t border-gray-200">
+                                    <div class="flex justify-between items-center">
+                                        <div class="text-sm text-gray-600">
+                                            <span id="permission-count">8</span>개 페이지 중 <span id="granted-count">8</span>개 허용됨
+                                        </div>
+                                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                            <span id="selected-user-save">홍길동</span> 권한 저장
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 컨테이너 -->
+    <div id="toastContainer" class="fixed top-20 right-4 space-y-2 z-50"></div>
+
+    <!-- 푸터 -->
+    <footer data-include="components/footer.html"></footer>
+
+    <script>
+        // 사용자별 권한 데이터 (실제로는 서버에서 가져올 데이터)
+        const userData = {
+            1: {
+                name: "홍길동", 
+                email: "hong@example.com", 
+                role: "관리자",
+                permissions: ["home", "analysis", "portfolio", "ai", "settings", "users", "pages", "logs", "permissions", "codes"]
+            },
+            2: {
+                name: "김영희", 
+                email: "kim@example.com", 
+                role: "일반 사용자",
+                permissions: ["home", "analysis", "portfolio"]
+            },
+            3: {
+                name: "박철수", 
+                email: "park@example.com", 
+                role: "분석가",
+                permissions: ["home", "analysis", "portfolio", "ai"]
+            },
+            4: {
+                name: "이민수", 
+                email: "lee@example.com", 
+                role: "일반 사용자",
+                permissions: ["home", "analysis"]
+            },
+            5: {
+                name: "최은정", 
+                email: "choi@example.com", 
+                role: "게스트",
+                permissions: ["home"]
+            },
+            6: {
+                name: "정대한", 
+                email: "jung@example.com", 
+                role: "분석가",
+                permissions: ["home", "analysis", "portfolio", "ai", "settings", "users"]
+            }
+        };
+
+        let currentUserId = 1;
+
+        // 페이지 권한 목록을 동적으로 렌더링
+        function renderPermissions() {
+            const container = document.getElementById('permissions-container');
+            const pagesData = getPagesData();
+            
+            const levelConfig = {
+                'public': { bg: 'bg-green-100', text: 'text-green-800', label: '공개' },
+                'user': { bg: 'bg-blue-100', text: 'text-blue-800', label: '사용자' },
+                'admin': { bg: 'bg-red-100', text: 'text-red-800', label: '관리자 전용' }
+            };
+            
+            container.innerHTML = Object.values(pagesData).map(page => {
+                const level = levelConfig[page.level] || levelConfig.public;
+                
+                return `
+                    <div class="permission-item bg-white rounded-lg p-4 border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <input type="checkbox" id="perm_${currentUserId}_${page.id}" 
+                                       class="permission-checkbox w-5 h-5 text-blue-600 rounded focus:ring-blue-500" 
+                                       data-page="${page.id}">
+                                <div>
+                                    <div class="font-medium text-gray-900">${page.name}</div>
+                                    <div class="text-sm text-gray-600">${page.url} - ${page.category}</div>
+                                </div>
+                            </div>
+                            <span class="${level.bg} ${level.text} px-2 py-1 rounded text-xs">${level.label}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 페이지 데이터가 변경될 때 호출되는 새로고침 함수
+        window.refreshPermissionsPage = function() {
+            renderPermissions();
+            loadUserPermissions(currentUserId);
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 권한 목록 렌더링
+            renderPermissions();
+            
+            // 사용자 클릭 이벤트
+            document.querySelectorAll('.user-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const userId = parseInt(this.getAttribute('data-user-id'));
+                    selectUser(userId);
+                });
+            });
+
+            // 체크박스 변경 이벤트 (이벤트 위임 사용)
+            document.addEventListener('change', function(e) {
+                if (e.target.classList.contains('permission-checkbox')) {
+                    updatePermissionCount();
+                }
+            });
+
+            // 모두 허용/거부 버튼
+            const allowAllBtn = Array.from(document.querySelectorAll('button')).find(btn => btn.textContent.includes('모두 허용'));
+            const denyAllBtn = Array.from(document.querySelectorAll('button')).find(btn => btn.textContent.includes('모두 거부'));
+            
+            if (allowAllBtn) {
+                allowAllBtn.addEventListener('click', function() {
+                    setAllPermissions(true);
+                });
+            }
+            
+            if (denyAllBtn) {
+                denyAllBtn.addEventListener('click', function() {
+                    setAllPermissions(false);
+                });
+            }
+
+            // 초기 로드
+            loadUserPermissions(currentUserId);
+        });
+
+        function selectUser(userId) {
+            currentUserId = userId;
+            
+            // 사용자 목록에서 선택 표시
+            document.querySelectorAll('.user-item').forEach(item => {
+                item.classList.remove('border-blue-500');
+                item.classList.add('border-gray-200');
+            });
+            
+            document.querySelector(`[data-user-id="${userId}"]`).classList.remove('border-gray-200');
+            document.querySelector(`[data-user-id="${userId}"]`).classList.add('border-blue-500');
+
+            // 권한 정보 로드
+            loadUserPermissions(userId);
+        }
+
+        function loadUserPermissions(userId) {
+            const user = userData[userId];
+            if (!user) return;
+
+            // 사용자 이름 업데이트
+            document.getElementById('selected-user-name').textContent = user.name;
+            document.getElementById('selected-user-save').textContent = user.name;
+
+            // 체크박스 상태 업데이트
+            document.querySelectorAll('.permission-checkbox').forEach(checkbox => {
+                const pageId = checkbox.getAttribute('data-page');
+                checkbox.checked = user.permissions.includes(pageId);
+            });
+
+            updatePermissionCount();
+        }
+
+        function updatePermissionCount() {
+            const totalPermissions = document.querySelectorAll('.permission-checkbox').length;
+            const grantedPermissions = document.querySelectorAll('.permission-checkbox:checked').length;
+            
+            document.getElementById('permission-count').textContent = totalPermissions;
+            document.getElementById('granted-count').textContent = grantedPermissions;
+
+            // 사용자 목록의 권한 수 업데이트
+            const userItem = document.querySelector(`[data-user-id="${currentUserId}"] .text-gray-500 div`);
+            if (userItem) {
+                userItem.textContent = `권한: ${grantedPermissions}/${totalPermissions}`;
+            }
+        }
+
+        function setAllPermissions(allow) {
+            document.querySelectorAll('.permission-checkbox').forEach(checkbox => {
+                checkbox.checked = allow;
+            });
+            updatePermissionCount();
+        }
+
+        // 권한 저장 함수 (실제로는 서버에 저장)
+        function saveUserPermissions() {
+            const userId = currentUserId;
+            const permissions = [];
+            
+            document.querySelectorAll('.permission-checkbox:checked').forEach(checkbox => {
+                permissions.push(checkbox.getAttribute('data-page'));
+            });
+
+            // 데이터 업데이트
+            userData[userId].permissions = permissions;
+
+            // Toast 메시지 표시
+            showToast(`${userData[userId].name}님의 권한이 저장되었습니다.`, 'success');
+        }
+
+        // 저장 버튼 이벤트 (페이지 로드 후 바인딩)
+        setTimeout(() => {
+            const saveButton = document.querySelector('button:has(span[id="selected-user-save"])');
+            if (saveButton) {
+                saveButton.addEventListener('click', saveUserPermissions);
+            }
+        }, 100);
+    </script>
+</body>
+</html>

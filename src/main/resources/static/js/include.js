@@ -87,7 +87,7 @@ function initializeNavigation() {
         settingsMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             hideSettingsDropdown();
-            showToast('설정 페이지로 이동합니다!', 'info');
+            window.location.href = 'settings-overview.html';
         });
     }
 

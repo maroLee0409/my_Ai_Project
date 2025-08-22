@@ -2,14 +2,21 @@
 <nav class="bg-blue-600 text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex items-center">
+            <div class="flex items-center space-x-8">
                 <h1 class="text-xl font-bold">📈 StockAI</h1>
+                
+                <!-- 메인 메뉴 (왼쪽 정렬) -->
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="hover:text-blue-200 px-3 py-2 rounded-md">홈</a>
+                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">대시보드</a>
+                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">주식 분석</a>
+                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">포트폴리오</a>
+                    <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">AI 예측</a>
+                </div>
             </div>
+            
+            <!-- 사용자 메뉴 (오른쪽) -->
             <div class="flex items-center space-x-4">
-                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">대시보드</a>
-                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">주식 분석</a>
-                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">포트폴리오</a>
-                <a href="#" class="hover:text-blue-200 px-3 py-2 rounded-md">AI 예측</a>
                 
                 <!-- 로그인 전 상태 -->
                 <div id="loginSection" class="flex items-center space-x-4">

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지 관리 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="js/include.js"></script>
+    <script src="js/pages-data.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav data-include="components/navigation.html"></nav>
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="flex gap-6">
+            <!-- 어드민 사이드바 네비게이션 -->
+            <div data-include="components/admin-navigation.html"></div>
+
+            <!-- 메인 컨텐츠 영역 -->
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">페이지 관리</h1>
+                        <p class="text-gray-600 mt-2">시스템 페이지들의 구조와 접근 권한을 관리합니다.</p>
+                    </div>
+                    
+                    <div class="mb-6 flex justify-between items-center">
+                        <div class="flex gap-4">
+                            <input type="text" id="searchInput" placeholder="페이지 이름 검색..." 
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select id="categoryFilter" class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option value="all">전체 카테고리</option>
+                                <option value="admin">관리자</option>
+                                <option value="user">사용자</option>
+                                <option value="public">공개</option>
+                            </select>
+                        </div>
+                        <button id="addPageBtn" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            페이지 추가
+                        </button>
+                    </div>
+                    
+                    <div id="pagesList" class="space-y-4">
+                        <!-- 페이지 목록이 동적으로 로드됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페이지 추가/수정 모달 -->
+    <div id="pageModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modalTitle" class="text-lg font-semibold">페이지 추가</h2>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="pageForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">페이지 이름</label>
+                        <input type="text" id="pageName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">페이지 ID</label>
+                        <input type="text" id="pageId" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                        <p class="text-xs text-gray-500 mt-1">권한 관리에서 사용될 고유 식별자입니다</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">URL 경로</label>
+                        <input type="text" id="pageUrl" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="/example.html" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">접근 레벨</label>
+                        <select id="pageLevel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="public">공개</option>
+                            <option value="user">사용자</option>
+                            <option value="admin">관리자 전용</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">카테고리</label>
+                        <input type="text" id="pageCategory" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="메인">
+                    </div>
+                </div>
+                
+                <div class="flex gap-3 mt-6">
+                    <button type="submit" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        저장
+                    </button>
+                    <button type="button" id="cancelModal" class="flex-1 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">
+                        취소
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast 컨테이너 -->
+    <div id="toastContainer" class="fixed top-20 right-4 space-y-2 z-50"></div>
+
+    <!-- 푸터 -->
+    <footer data-include="components/footer.html"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePageManagement();
+        });
+
+        function initializePageManagement() {
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const addPageBtn = document.getElementById('addPageBtn');
+            const pageModal = document.getElementById('pageModal');
+            const closeModal = document.getElementById('closeModal');
+            const cancelModal = document.getElementById('cancelModal');
+            const pageForm = document.getElementById('pageForm');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            let editingPageId = null;
+
+            // 페이지 목록 렌더링
+            function renderPages() {
+                const pagesList = document.getElementById('pagesList');
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+                
+                const filteredPages = Object.values(getPagesData()).filter(page => {
+                    const matchesSearch = page.name.toLowerCase().includes(searchTerm) || 
+                                        page.url.toLowerCase().includes(searchTerm);
+                    const matchesCategory = selectedCategory === 'all' || page.level === selectedCategory;
+                    return matchesSearch && matchesCategory;
+                });
+                
+                pagesList.innerHTML = filteredPages.map(page => {
+                    const levelConfig = {
+                        'public': { bg: 'bg-green-100', text: 'text-green-800', label: '공개' },
+                        'user': { bg: 'bg-blue-100', text: 'text-blue-800', label: '사용자' },
+                        'admin': { bg: 'bg-red-100', text: 'text-red-800', label: '관리자 전용' }
+                    };
+                    
+                    const level = levelConfig[page.level] || levelConfig.public;
+                    
+                    return `
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">${page.name}</h3>
+                                    <p class="text-sm text-gray-600 mt-1">${page.url}</p>
+                                    <div class="mt-2 flex gap-2">
+                                        <span class="${level.bg} ${level.text} px-2 py-1 rounded text-xs">${level.label}</span>
+                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">${page.category}</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-2">마지막 수정: ${page.lastModified}</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="editPage('${page.id}')" class="text-blue-600 hover:text-blue-800 text-sm">수정</button>
+                                    <button onclick="deletePage('${page.id}')" class="text-red-600 hover:text-red-800 text-sm">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // 검색 및 필터 이벤트
+            searchInput.addEventListener('input', renderPages);
+            categoryFilter.addEventListener('change', renderPages);
+
+            // 페이지 추가 버튼
+            addPageBtn.addEventListener('click', function() {
+                editingPageId = null;
+                modalTitle.textContent = '페이지 추가';
+                pageForm.reset();
+                pageModal.classList.remove('hidden');
+            });
+
+            // 모달 닫기
+            function closeModalHandler() {
+                pageModal.classList.add('hidden');
+                editingPageId = null;
+            }
+            
+            closeModal.addEventListener('click', closeModalHandler);
+            cancelModal.addEventListener('click', closeModalHandler);
+            
+            // 모달 배경 클릭시 닫기
+            pageModal.addEventListener('click', function(e) {
+                if (e.target === pageModal) {
+                    closeModalHandler();
+                }
+            });
+
+            // 폼 제출
+            pageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const pageData = {
+                    id: document.getElementById('pageId').value,
+                    name: document.getElementById('pageName').value,
+                    url: document.getElementById('pageUrl').value,
+                    level: document.getElementById('pageLevel').value,
+                    category: document.getElementById('pageCategory').value || '기타',
+                    lastModified: new Date().toISOString().split('T')[0]
+                };
+                
+                if (editingPageId) {
+                    updatePage(editingPageId, pageData);
+                    showToast('페이지가 수정되었습니다.', 'success');
+                } else {
+                    if (addPage(pageData)) {
+                        showToast('페이지가 추가되었습니다.', 'success');
+                    } else {
+                        showToast('이미 존재하는 페이지 ID입니다.', 'error');
+                        return;
+                    }
+                }
+                
+                closeModalHandler();
+                renderPages();
+            });
+
+            // 전역 함수들
+            window.editPage = function(pageId) {
+                const page = getPageById(pageId);
+                if (page) {
+                    editingPageId = pageId;
+                    modalTitle.textContent = '페이지 수정';
+                    
+                    document.getElementById('pageId').value = page.id;
+                    document.getElementById('pageName').value = page.name;
+                    document.getElementById('pageUrl').value = page.url;
+                    document.getElementById('pageLevel').value = page.level;
+                    document.getElementById('pageCategory').value = page.category;
+                    
+                    pageModal.classList.remove('hidden');
+                }
+            };
+
+            window.deletePage = function(pageId) {
+                if (confirm('정말로 이 페이지를 삭제하시겠습니까?')) {
+                    removePage(pageId);
+                    showToast('페이지가 삭제되었습니다.', 'info');
+                    renderPages();
+                }
+            };
+
+            // 초기 렌더링
+            renderPages();
+        }
+    </script>
+</body>
+</html>

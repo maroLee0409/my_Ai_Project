@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="js/include.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 네비게이션 바 -->
+    <nav data-include="components/navigation.html"></nav>
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="flex">
+            <!-- 사이드바 네비게이션 -->
+            <div class="w-64 min-h-screen bg-white shadow-lg rounded-lg p-6 mr-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-6">설정 메뉴</h2>
+                
+                <nav class="space-y-2">
+                    <a href="#" class="settings-menu-item block px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" 
+                       data-target="overview" data-active="true">
+                        <i class="icon-dashboard mr-3"></i>
+                        <span>설정 개요</span>
+                    </a>
+                    
+                    <a href="#" class="settings-menu-item block px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" 
+                       data-target="user-management">
+                        <i class="icon-users mr-3"></i>
+                        <span>회원관리</span>
+                    </a>
+                    
+                    <a href="#" class="settings-menu-item block px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" 
+                       data-target="page-management">
+                        <i class="icon-pages mr-3"></i>
+                        <span>페이지 관리</span>
+                    </a>
+                    
+                    <a href="#" class="settings-menu-item block px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" 
+                       data-target="logs">
+                        <i class="icon-log mr-3"></i>
+                        <span>로그 관리</span>
+                    </a>
+                    
+                    <a href="#" class="settings-menu-item block px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" 
+                       data-target="menu-permissions">
+                        <i class="icon-shield mr-3"></i>
+                        <span>메뉴 접근권한</span>
+                    </a>
+                    
+                    <a href="#" class="settings-menu-item block px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" 
+                       data-target="code-management">
+                        <i class="icon-code mr-3"></i>
+                        <span>코드 관리</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 메인 컨텐츠 영역 -->
+            <div class="flex-1">
+                <!-- 설정 개요 페이지 -->
+                <div id="overview" class="settings-content bg-white rounded-lg shadow-lg p-8">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">설정 개요</h1>
+                        <p class="text-gray-600 mt-2">시스템 설정 및 관리 메뉴 개요입니다.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- 회원관리 카드 -->
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200 hover:shadow-md transition-shadow cursor-pointer" 
+                             onclick="switchToTab('user-management')">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-blue-800">회원관리</h3>
+                                <i class="icon-users text-2xl text-blue-600"></i>
+                            </div>
+                            <p class="text-blue-700 text-sm mb-3">사용자 계정, 권한, 프로필 관리</p>
+                            <div class="text-xs text-blue-600">
+                                <span class="font-medium">등록된 사용자:</span> 156명
+                            </div>
+                        </div>
+
+                        <!-- 페이지 관리 카드 -->
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200 hover:shadow-md transition-shadow cursor-pointer" 
+                             onclick="switchToTab('page-management')">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-green-800">페이지 관리</h3>
+                                <i class="icon-pages text-2xl text-green-600"></i>
+                            </div>
+                            <p class="text-green-700 text-sm mb-3">페이지 구조, 접근권한 설정</p>
+                            <div class="text-xs text-green-600">
+                                <span class="font-medium">등록된 페이지:</span> 24개
+                            </div>
+                        </div>
+
+                        <!-- 로그 관리 카드 -->
+                        <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-lg border border-yellow-200 hover:shadow-md transition-shadow cursor-pointer" 
+                             onclick="switchToTab('logs')">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-yellow-800">로그 관리</h3>
+                                <i class="icon-log text-2xl text-yellow-600"></i>
+                            </div>
+                            <p class="text-yellow-700 text-sm mb-3">시스템 로그, 사용자 활동 추적</p>
+                            <div class="text-xs text-yellow-600">
+                                <span class="font-medium">오늘 로그:</span> 1,247건
+                            </div>
+                        </div>
+
+                        <!-- 메뉴 접근권한 카드 -->
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200 hover:shadow-md transition-shadow cursor-pointer" 
+                             onclick="switchToTab('menu-permissions')">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-purple-800">메뉴 접근권한</h3>
+                                <i class="icon-shield text-2xl text-purple-600"></i>
+                            </div>
+                            <p class="text-purple-700 text-sm mb-3">메뉴별 사용자 접근 권한 설정</p>
+                            <div class="text-xs text-purple-600">
+                                <span class="font-medium">권한 그룹:</span> 8개
+                            </div>
+                        </div>
+
+                        <!-- 코드 관리 카드 -->
+                        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg border border-indigo-200 hover:shadow-md transition-shadow cursor-pointer" 
+                             onclick="switchToTab('code-management')">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-indigo-800">코드 관리</h3>
+                                <i class="icon-code text-2xl text-indigo-600"></i>
+                            </div>
+                            <p class="text-indigo-700 text-sm mb-3">공통코드, 기초코드 관리</p>
+                            <div class="text-xs text-indigo-600">
+                                <span class="font-medium">등록된 코드:</span> 342개
+                            </div>
+                        </div>
+
+                        <!-- 시스템 정보 카드 -->
+                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border border-gray-200">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800">시스템 정보</h3>
+                                <i class="icon-info text-2xl text-gray-600"></i>
+                            </div>
+                            <p class="text-gray-700 text-sm mb-3">시스템 상태 및 버전 정보</p>
+                            <div class="text-xs text-gray-600 space-y-1">
+                                <div><span class="font-medium">버전:</span> v1.0.0</div>
+                                <div><span class="font-medium">상태:</span> 정상 운영</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 회원관리 페이지 -->
+                <div id="user-management" class="settings-content bg-white rounded-lg shadow-lg p-8 hidden">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">회원관리</h1>
+                        <p class="text-gray-600 mt-2">등록된 사용자 목록과 권한을 관리합니다.</p>
+                    </div>
+                    
+                    <!-- 검색 및 필터 영역 -->
+                    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1">
+                            <input type="text" placeholder="사용자 이름 또는 이메일 검색..." 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option>전체 권한</option>
+                            <option>관리자</option>
+                            <option>사용자</option>
+                            <option>게스트</option>
+                        </select>
+                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            사용자 추가
+                        </button>
+                    </div>
+                    
+                    <!-- 사용자 목록 테이블 -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">이름</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">이메일</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">권한</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">상태</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">가입일</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">작업</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">홍길동</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">hong@example.com</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">관리자</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-15</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">김영희</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">kim@example.com</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">사용자</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-02-10</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 페이지 관리 페이지 -->
+                <div id="page-management" class="settings-content bg-white rounded-lg shadow-lg p-8 hidden">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">페이지 관리</h1>
+                        <p class="text-gray-600 mt-2">시스템 페이지들의 구조와 접근 권한을 관리합니다.</p>
+                    </div>
+                    
+                    <div class="mb-6 flex justify-between items-center">
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="페이지 이름 검색..." 
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>전체 카테고리</option>
+                                <option>관리자</option>
+                                <option>사용자</option>
+                                <option>공개</option>
+                            </select>
+                        </div>
+                        <button class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            페이지 추가
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">메인 페이지</h3>
+                                    <p class="text-sm text-gray-600 mt-1">/index.html</p>
+                                    <div class="mt-2 flex gap-2">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">공개</span>
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">메인</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-blue-600 hover:text-blue-800 text-sm">수정</button>
+                                    <button class="text-red-600 hover:text-red-800 text-sm">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">설정 페이지</h3>
+                                    <p class="text-sm text-gray-600 mt-1">/settings.html</p>
+                                    <div class="mt-2 flex gap-2">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">관리자 전용</span>
+                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">관리</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-blue-600 hover:text-blue-800 text-sm">수정</button>
+                                    <button class="text-red-600 hover:text-red-800 text-sm">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 로그 관리 페이지 -->
+                <div id="logs" class="settings-content bg-white rounded-lg shadow-lg p-8 hidden">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">로그 관리</h1>
+                        <p class="text-gray-600 mt-2">시스템 로그와 사용자 활동을 모니터링합니다.</p>
+                    </div>
+                    
+                    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                            <option>전체 로그</option>
+                            <option>시스템 로그</option>
+                            <option>사용자 활동</option>
+                            <option>에러 로그</option>
+                        </select>
+                        <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg">
+                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            로그 내보내기
+                        </button>
+                    </div>
+                    
+                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm max-h-96 overflow-y-auto">
+                        <div>[2025-08-22 14:30:25] INFO - 사용자 로그인: hong@example.com</div>
+                        <div>[2025-08-22 14:28:15] INFO - 페이지 접근: /settings.html</div>
+                        <div>[2025-08-22 14:25:42] WARN - 잘못된 로그인 시도: unknown@example.com</div>
+                        <div>[2025-08-22 14:22:18] INFO - 시스템 백업 완료</div>
+                        <div>[2025-08-22 14:20:05] ERROR - DB 연결 타임아웃</div>
+                        <div>[2025-08-22 14:18:33] INFO - 사용자 회원가입: kim@example.com</div>
+                    </div>
+                </div>
+
+                <!-- 메뉴 접근권한 페이지 -->
+                <div id="menu-permissions" class="settings-content bg-white rounded-lg shadow-lg p-8 hidden">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">메뉴 접근권한</h1>
+                        <p class="text-gray-600 mt-2">각 메뉴에 대한 사용자 그룹별 접근 권한을 설정합니다.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">권한 그룹</h3>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <span class="font-medium">관리자</span>
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">모든 권한</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <span class="font-medium">일반 사용자</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">제한된 권한</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <span class="font-medium">게스트</span>
+                                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">읽기 전용</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">메뉴별 권한</h3>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <span>주식 분석</span>
+                                    <select class="px-2 py-1 border border-gray-300 rounded text-sm">
+                                        <option>모든 사용자</option>
+                                        <option>등록된 사용자</option>
+                                        <option>관리자만</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <span>포트폴리오</span>
+                                    <select class="px-2 py-1 border border-gray-300 rounded text-sm">
+                                        <option>등록된 사용자</option>
+                                        <option>관리자만</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <span>설정</span>
+                                    <select class="px-2 py-1 border border-gray-300 rounded text-sm">
+                                        <option>관리자만</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 코드 관리 페이지 -->
+                <div id="code-management" class="settings-content bg-white rounded-lg shadow-lg p-8 hidden">
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">코드 관리</h1>
+                        <p class="text-gray-600 mt-2">시스템에서 사용하는 공통코드와 기초코드를 관리합니다.</p>
+                    </div>
+                    
+                    <div class="mb-6 flex justify-between items-center">
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="코드 또는 코드명 검색..." 
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>전체 분류</option>
+                                <option>사용자 권한</option>
+                                <option>주식 분류</option>
+                                <option>시스템 설정</option>
+                            </select>
+                        </div>
+                        <button class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                            코드 추가
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">코드</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">코드명</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">분류</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">상태</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">등록일</th>
+                                    <th class="border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700">작업</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">USER_ROLE_ADMIN</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">관리자</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">사용자 권한</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm font-mono">STOCK_TYPE_KRX</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">한국거래소</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">주식 분류</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">활성</span>
+                                    </td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">2025-01-01</td>
+                                    <td class="border border-gray-200 px-4 py-3 text-sm">
+                                        <button class="text-blue-600 hover:text-blue-800 mr-2">수정</button>
+                                        <button class="text-red-600 hover:text-red-800">삭제</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer data-include="components/footer.html"></footer>
+
+    <script>
+        // 설정 메뉴 탭 전환 기능
+        function switchToTab(targetId) {
+            // 모든 컨텐츠 숨기기
+            document.querySelectorAll('.settings-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // 모든 메뉴 아이템에서 active 클래스 제거
+            document.querySelectorAll('.settings-menu-item').forEach(item => {
+                item.classList.remove('bg-blue-50', 'text-blue-600', 'border-l-4', 'border-blue-600');
+                item.setAttribute('data-active', 'false');
+            });
+            
+            // 선택된 컨텐츠 보이기
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+            
+            // 선택된 메뉴 아이템에 active 클래스 추가
+            const targetMenuItem = document.querySelector(`[data-target="${targetId}"]`);
+            if (targetMenuItem) {
+                targetMenuItem.classList.add('bg-blue-50', 'text-blue-600', 'border-l-4', 'border-blue-600');
+                targetMenuItem.setAttribute('data-active', 'true');
+            }
+        }
+        
+        // 페이지 로드 후 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 사이드바 메뉴 클릭 이벤트
+            document.querySelectorAll('.settings-menu-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    switchToTab(targetId);
+                });
+            });
+            
+            // 초기 활성 탭 설정
+            switchToTab('overview');
+        });
+    </script>
+</body>
+</html>

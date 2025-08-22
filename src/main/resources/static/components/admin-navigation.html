@@ -1,0 +1,63 @@
+<!-- 어드민 사이드바 네비게이션 -->
+<div class="w-64 min-h-screen bg-white shadow-lg rounded-lg p-6">
+    <div class="border-b border-gray-200 pb-4 mb-6">
+        <h2 class="text-xl font-bold text-gray-800">관리자 설정</h2>
+        <p class="text-sm text-gray-600 mt-1">시스템 관리 메뉴</p>
+    </div>
+    
+    <nav class="space-y-3">
+        <a href="settings-overview.html" class="admin-nav-item flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors border-l-4 border-transparent hover:border-blue-600">
+            <span class="icon-dashboard text-xl mr-3">📊</span>
+            <span class="font-medium">설정 개요</span>
+        </a>
+        
+        <a href="user-management.html" class="admin-nav-item flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-600 transition-colors border-l-4 border-transparent hover:border-green-600">
+            <span class="icon-users text-xl mr-3">👥</span>
+            <span class="font-medium">회원관리</span>
+        </a>
+        
+        <a href="page-management.html" class="admin-nav-item flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-purple-50 hover:text-purple-600 transition-colors border-l-4 border-transparent hover:border-purple-600">
+            <span class="icon-pages text-xl mr-3">📄</span>
+            <span class="font-medium">페이지 관리</span>
+        </a>
+        
+        <a href="log-management.html" class="admin-nav-item flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-yellow-50 hover:text-yellow-600 transition-colors border-l-4 border-transparent hover:border-yellow-600">
+            <span class="icon-log text-xl mr-3">📝</span>
+            <span class="font-medium">로그 관리</span>
+        </a>
+        
+        <a href="menu-permissions.html" class="admin-nav-item flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors border-l-4 border-transparent hover:border-red-600">
+            <span class="icon-shield text-xl mr-3">🛡️</span>
+            <span class="font-medium">메뉴 접근권한</span>
+        </a>
+        
+        <a href="code-management.html" class="admin-nav-item flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors border-l-4 border-transparent hover:border-indigo-600">
+            <span class="icon-code text-xl mr-3">💻</span>
+            <span class="font-medium">코드 관리</span>
+        </a>
+    </nav>
+    
+    <div class="mt-8 pt-6 border-t border-gray-200">
+        <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="text-sm font-semibold text-gray-700 mb-2">시스템 정보</h3>
+            <div class="text-xs text-gray-600 space-y-1">
+                <div class="flex justify-between">
+                    <span>버전:</span>
+                    <span class="font-medium">v1.0.0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>상태:</span>
+                    <span class="text-green-600 font-medium">정상</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>사용자:</span>
+                    <span class="font-medium">156명</span>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="window.location.href='index.html'" class="w-full mt-4 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm">
+            메인으로 돌아가기
+        </button>
+    </div>
+</div>
