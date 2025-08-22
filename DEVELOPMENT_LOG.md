@@ -261,3 +261,47 @@ stock-analyzer/
 2. **데이터베이스 스키마**: 사용자, 권한, 로그 테이블 설계
 3. **인증/권한 시스템**: Spring Security 기반 실제 권한 관리
 4. **실시간 로그 시스템**: WebSocket 기반 실시간 로그 스트리밍
+
+---
+
+## 2025-08-22 (목요일) - 추가 작업
+
+### 📋 오늘의 추가 작업: MySQL 데이터베이스 연동
+
+#### 1. Docker Compose MySQL 설정
+- **MySQL 8.0 컨테이너**: 이미 9일 전부터 실행 중 확인
+- **데이터베이스 설정**: `ai_project` DB, 사용자 `gksmfakt9` 계정
+- **포트 매핑**: `3306:3306` 정상 연결
+- **볼륨 설정**: `db_data` 영구 데이터 저장 확인
+
+#### 2. Spring Boot 설정 변경
+- **application.properties 업데이트**: H2에서 MySQL로 완전 전환
+  - MySQL JDBC 드라이버 설정
+  - 한국 시간대 설정 (`serverTimezone=Asia/Seoul`)
+  - UTF-8 인코딩 설정
+  - JPA Hibernate `ddl-auto=update` (테이블 자동 생성/업데이트)
+
+#### 3. 연결 테스트 완료
+- **빌드 성공**: Gradle 빌드 통과 확인
+- **JPA 연결**: EntityManagerFactory 정상 초기화
+- **데이터베이스 연결**: MySQL 8.0 정상 연결 확인
+
+### 🛠 기술적 변경사항
+- H2 인메모리 DB → MySQL 8.0 영구 데이터베이스로 전환
+- `build.gradle`에 이미 MySQL Connector 의존성 포함 확인
+- Docker Compose로 개발환경 컨테이너화 완료
+
+### 📁 수정된 파일들
+- `application.properties`: MySQL 연결 설정으로 완전 변경
+- `docker-compose.yml`: 이미 프로젝트 루트에 위치 (정상)
+
+### ✅ 완료된 설정
+✅ MySQL 컨테이너 정상 실행  
+✅ Spring Boot - MySQL 연결 설정  
+✅ JPA/Hibernate MySQL Dialect 설정  
+✅ 애플리케이션 빌드 및 연결 테스트 성공  
+
+### 💡 데이터베이스 연동 완료
+- 이제 실제 엔티티 클래스 생성 시 MySQL 테이블이 자동 생성됨
+- H2 콘솔 대신 MySQL Workbench나 CLI로 DB 관리 가능
+- 영구 데이터 저장으로 개발 데이터 유지 가능

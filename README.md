@@ -123,6 +123,31 @@ python main.py
 - Backend API: http://localhost:8080/swagger-ui.html
 - AI Service API: http://localhost:5000/docs
 
+## 개발 가이드라인
+
+### Frontend API 통신 방식
+- **Form 태그**: 검색 조건 넘길 때만 사용
+- **JavaScript API 호출**: 모든 CRUD 작업에 사용
+- 예시: `get('/api/users', params)`, `post('/api/login', data)`, `put('/api/users/1', data)`, `patch('/api/users/1', data)`, `del('/api/users/1')`
+
+### API 함수 사용법
+```javascript
+// GET 요청
+const users = await get('/api/users', { page: 1, size: 10 });
+
+// POST 요청 (생성)
+const newUser = await post('/api/users', { userId: 'test', password: '123', email: 'test@email.com' });
+
+// PUT 요청 (전체 수정)
+const updatedUser = await put('/api/users/1', { userId: 'test', password: '456', email: 'new@email.com' });
+
+// PATCH 요청 (부분 수정)
+const patchedUser = await patch('/api/users/1', { email: 'updated@email.com' });
+
+// DELETE 요청
+const result = await del('/api/users/1');
+```
+
 ## 라이선스
 
 MIT License

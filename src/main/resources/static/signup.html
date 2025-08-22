@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <div class="max-w-md flex flex-col bg-white p-8 rounded-lg shadow-md space-y-8">
+        <div>
+            <div class="mx-auto h-12 w-12 flex items-center justify-center bg-green-600 rounded-full">
+                <span class="text-2xl text-white">📝</span>
+            </div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                새 계정 만들기
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                주식 분석 및 추천 시스템에 가입하세요
+            </p>
+        </div>
+        
+        <form class="mt-8 space-y-6" id="signupForm">
+            <div class="rounded-md shadow-sm space-y-4">
+                <div>
+                    <label for="userId" class="block text-sm font-medium text-gray-700">
+                        사용자 ID *
+                    </label>
+                    <input 
+                        id="userId" 
+                        name="userId" 
+                        type="text" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                        placeholder="영문, 숫자 조합 4-20자"
+                    >
+                    <p class="mt-1 text-xs text-gray-500">로그인 시 사용할 ID입니다.</p>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">
+                        비밀번호 *
+                    </label>
+                    <input 
+                        id="password" 
+                        name="password" 
+                        type="password" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                        placeholder="8자 이상 입력하세요"
+                    >
+                </div>
+
+                <div>
+                    <label for="passwordConfirm" class="block text-sm font-medium text-gray-700">
+                        비밀번호 확인 *
+                    </label>
+                    <input 
+                        id="passwordConfirm" 
+                        name="passwordConfirm" 
+                        type="password" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                        placeholder="비밀번호를 다시 입력하세요"
+                    >
+                </div>
+
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">
+                        이름 *
+                    </label>
+                    <input 
+                        id="name" 
+                        name="name" 
+                        type="text" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                        placeholder="실명을 입력하세요"
+                    >
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">
+                        이메일 *
+                    </label>
+                    <input 
+                        id="email" 
+                        name="email" 
+                        type="email" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                        placeholder="example@email.com"
+                    >
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <div class="flex items-center">
+                    <input 
+                        id="agree-terms" 
+                        name="agree-terms" 
+                        type="checkbox" 
+                        required
+                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                    >
+                    <label for="agree-terms" class="ml-2 block text-sm text-gray-900">
+                        <a href="#" class="text-green-600 hover:text-green-500">이용약관</a> 및 
+                        <a href="#" class="text-green-600 hover:text-green-500">개인정보처리방침</a>에 동의합니다. *
+                    </label>
+                </div>
+            </div>
+
+            <div class="py-2">
+                <button 
+                    type="submit" 
+                    class="group relative w-full flex justify-center py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out"
+                >
+                    회원가입
+                </button>
+            </div>
+
+            <div class="text-center">
+                <div class="mt-8">
+                    <button 
+                        type="button" 
+                        id="loginBtn"
+                        class="w-full flex justify-center py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out"
+                    >
+                        이미 계정이 있으신가요? 로그인
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="js/include.js"></script>
+    <script>
+        // 회원가입 폼 처리
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // 유효성 검사
+            if (!userId || !password || !passwordConfirm || !name || !email) {
+                showToast('모든 필수 항목을 입력해주세요.', 'error');
+                return;
+            }
+            
+            if (password !== passwordConfirm) {
+                showToast('비밀번호가 일치하지 않습니다.', 'error');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showToast('비밀번호는 8자 이상이어야 합니다.', 'error');
+                return;
+            }
+            
+            if (userId.length < 4 || userId.length > 20) {
+                showToast('사용자 ID는 4-20자 사이여야 합니다.', 'error');
+                return;
+            }
+            
+            // 임시로 회원가입 성공 처리
+            showToast('회원가입이 완료되었습니다!', 'success');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        });
+
+        // 로그인 버튼 클릭
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

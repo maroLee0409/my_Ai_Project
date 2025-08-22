@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - 주식 분석 시스템</title>
+    <link rel="stylesheet" href="tailwind.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <div class="max-w-md flex flex-col bg-white p-8 rounded-lg shadow-md space-y-8">
+        <div>
+            <div class="mx-auto h-12 w-12 flex items-center justify-center bg-blue-600 rounded-full">
+                <span class="text-2xl text-white">📈</span>
+            </div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                계정에 로그인하세요
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                주식 분석 및 추천 시스템
+            </p>
+        </div>
+        
+        <form class="mt-8 space-y-6" id="loginForm">
+            <div class="rounded-md shadow-sm space-y-4">
+                <div>
+                    <label for="userId" class="block text-sm font-medium text-gray-700">
+                        ID
+                    </label>
+                    <input 
+                        id="userId" 
+                        name="userId" 
+                        type="text" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                        placeholder="ID를 입력하세요"
+                    >
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">
+                        비밀번호
+                    </label>
+                    <input 
+                        id="password" 
+                        name="password" 
+                        type="password" 
+                        required 
+                        class="mt-1 appearance-none relative block w-full py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                        placeholder="비밀번호를 입력하세요"
+                    >
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <div class="flex items-center">
+                    <input 
+                        id="remember-me" 
+                        name="remember-me" 
+                        type="checkbox" 
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    >
+                    <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                        로그인 상태 유지
+                    </label>
+                </div>
+            </div>
+
+            <div class="py-2">
+                <button 
+                    type="submit" 
+                    class="group relative w-full flex justify-center py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+                >
+                    로그인
+                </button>
+            </div>
+
+            <div class="text-center">
+                <div class="">
+                    <button
+                            type="button"
+                        id="signupBtn"
+                        class="w-full flex justify-center py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+                    >
+                        새 계정 만들기
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="js/include.js"></script>
+    <script>
+        // 로그인 폼 처리
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            
+            if (!userId || !password) {
+                showToast('사용자 ID와 비밀번호를 입력해주세요.', 'error');
+                return;
+            }
+            
+            // 임시로 아무 값이나 입력하면 로그인 성공
+            showToast('로그인 성공!', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+
+        // 회원가입 버튼 클릭
+        document.getElementById('signupBtn').addEventListener('click', function() {
+            window.location.href = 'signup.html';
+        });
+    </script>
+</body>
+</html>

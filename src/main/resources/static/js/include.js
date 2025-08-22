@@ -51,8 +51,10 @@ function initializeNavigation() {
     // 로그아웃 버튼 클릭
     logoutBtn.addEventListener('click', function() {
         isLoggedIn = false;
-        updateUIBasedOnLoginStatus();
         showToast('로그아웃되었습니다.', 'info');
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 1500);
     });
 
     // 설정 드롭다운 관련 요소들
